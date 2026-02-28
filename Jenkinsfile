@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     tools {
-        maven 'maven'
-        jdk 'jdk17'
+        maven 'Maven'
+        jdk 'JDK'
     }
 
     environment {
@@ -20,13 +20,17 @@ pipeline {
 
         stage('Build Application') {
             steps {
-                bat 'mvn clean package'
+                dir('prac9') {
+                    bat 'mvn clean package'
+                }
             }
         }
 
         stage('Run Tests') {
             steps {
-                bat 'mvn test'
+                dir('prac9') {
+                    bat 'mvn test'
+                }
             }
         }
 
@@ -39,10 +43,12 @@ pipeline {
 
         stage('Deploy to Tomcat') {
             steps {
-                bat '''
-                del "%TOMCAT_HOME%\\webapps\\prac9-1.0-SNAPSHOT.war" 2>nul
-                copy target\\*.war "%TOMCAT_HOME%\\webapps\\"
-                '''
+                dir('prac9') {
+                    bat '''
+                    del "%TOMCAT_HOME%\\webapps\\prac9-1.0-SNAPSHOT.war" 2>nul
+                    copy target\\*.war "%TOMCAT_HOME%\\webapps\\"
+                    '''
+                }
             }
         }
 
