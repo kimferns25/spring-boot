@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     tools {
-        maven 'maven'
-        jdk 'jdk17'
-    }
+    maven 'Maven3'
+    jdk 'JDK24'
+}
 
     environment {
         TOMCAT_HOME = "C:\\Program Files\\Apache Software Foundation\\Tomcat 9.0"
