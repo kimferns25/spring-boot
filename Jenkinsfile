@@ -20,7 +20,7 @@ pipeline {
 
         stage('Build Application') {
             steps {
-                dir('prac9') {   // remove this line if pom.xml is in root
+                dir('prac9') {
                     sh 'mvn clean package'
                 }
             }
@@ -28,7 +28,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                dir('prac9') {   // remove if pom.xml is in root
+                dir('prac9') {
                     sh 'mvn test'
                 }
             }
@@ -43,7 +43,7 @@ pipeline {
 
         stage('Deploy to Tomcat') {
             steps {
-                dir('prac9') {   // remove if pom.xml is in root
+                dir('prac9') {
                     sh 'cp target/*.war $TOMCAT_HOME/webapps/'
                 }
             }
